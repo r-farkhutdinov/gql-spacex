@@ -1,0 +1,7 @@
+query getShips {
+  ships {
+    abs
+    active
+    id
+  }
+}
