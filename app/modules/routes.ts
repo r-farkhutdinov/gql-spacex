@@ -1,6 +1,6 @@
 import { Space } from "./Space/Space.component";
 import * as React from "react";
-import { EmptyLayout } from "../layout/EmptyLayout";
+import { SpaceLayout } from "../layout/SpaceLayout";
 
 export type RouteType = {
   name: string;
@@ -14,6 +14,6 @@ export const routes: RouteType[] = [
     name: "Space",
     path: "/",
     component: Space,
-    layout: EmptyLayout,
+    layout: SpaceLayout,
   },
 ];

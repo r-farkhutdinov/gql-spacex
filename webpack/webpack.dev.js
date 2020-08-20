@@ -7,8 +7,6 @@ module.exports = (env, argv) => {
   const outputDir = path.join(__dirname, "prod");
   const srcDir = path.join(__dirname, "src");
 
-  const restProxyTarget = env && env.restProxyTarget;
-
   return merge(common(env, argv), {
     mode: "development",
     devtool: "inline-source-map",
@@ -18,12 +16,6 @@ module.exports = (env, argv) => {
       contentBase: outputDir,
       publicPath: "/",
       historyApiFallback: true,
-      proxy: [
-        {
-          context: ["/api/"],
-          target: restProxyTarget,
-        },
-      ],
     },
     plugins: [
       new webpack.DefinePlugin({
