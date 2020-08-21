@@ -1,23 +1,26 @@
 import React from 'react';
 import { useGetShips } from './hooks/useGetShips';
 import { Ship } from './components/Ship/Ship.component';
-import { ShipsContainerStyled, ShipsHeaderStyled } from './Ships.styles';
-import { ThemeContext } from 'styled-components';
+import {
+  ShipsContainerStyled,
+  ShipsHeaderStyled,
+  ShipsPageContainerStyled,
+} from './Ships.styles';
+import { Loader } from '../../common/Loader/Loader.component';
 
 export const Ships: React.FC = () => {
-  const { data } = useGetShips();
-  const themeContext = React.useContext(ThemeContext);
-
-  console.log('Current theme: ', themeContext);
+  const { data, loading } = useGetShips();
 
   return (
-    <>
+    <ShipsPageContainerStyled>
       <ShipsHeaderStyled>Ships</ShipsHeaderStyled>
       <ShipsContainerStyled>
-        {data?.ships.map((ship) => (
-          <Ship key={ship.id} ship={ship} />
-        ))}
+        {loading ? (
+          <Loader />
+        ) : (
+          data?.ships.map((ship) => <Ship key={ship.id} ship={ship} />)
+        )}
       </ShipsContainerStyled>
-    </>
+    </ShipsPageContainerStyled>
   );
 };

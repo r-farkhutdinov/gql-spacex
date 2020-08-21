@@ -8,6 +8,8 @@ export const ShipStyled = styled.div`
   padding: 24px;
   cursor: pointer;
 
+  transition: 0.2s;
+
   &:hover {
     box-shadow: 0 0 10px ${({ theme }) => theme.colors.hover};
   }
