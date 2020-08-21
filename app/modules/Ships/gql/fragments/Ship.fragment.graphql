@@ -1,0 +1,12 @@
+fragment ShipPart on Ship {
+  abs
+  active
+  id
+  course_deg
+  class
+  model
+  name
+  url
+  weight_kg
+  year_built
+}

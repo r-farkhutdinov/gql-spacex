@@ -1,0 +1,5 @@
+query getShips($limit: Int, $offset: Int) {
+  ships(limit: $limit, offset: $offset) {
+    ...ShipPart
+  }
+}

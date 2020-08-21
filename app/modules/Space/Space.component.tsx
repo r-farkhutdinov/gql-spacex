@@ -1,6 +1,9 @@
-import React from "react";
-import { ContainerStyled } from "./Space.styles";
+import React from 'react';
+import { ContainerStyled } from './Space.styles';
+import { Ships } from '../Ships/Ships.component';
 
 export const Space: React.FC = () => (
-  <ContainerStyled>Space page</ContainerStyled>
+  <ContainerStyled>
+    <Ships />
+  </ContainerStyled>
 );

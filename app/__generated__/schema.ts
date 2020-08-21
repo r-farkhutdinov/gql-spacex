@@ -1320,27 +1320,46 @@ export type CoreMission = {
   flight?: Maybe<Scalars['Int']>;
 };
 
-export type GetShipsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetShipsQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+}>;
 
 
 export type GetShipsQuery = (
   { __typename?: 'Query' }
   & { ships?: Maybe<Array<Maybe<(
     { __typename?: 'Ship' }
-    & Pick<Ship, 'abs' | 'active' | 'id'>
+    & ShipPartFragment
   )>>> }
 );
 
+export type ShipPartFragment = (
+  { __typename?: 'Ship' }
+  & Pick<Ship, 'abs' | 'active' | 'id' | 'course_deg' | 'class' | 'model' | 'name' | 'url' | 'weight_kg' | 'year_built'>
+);
 
-export const GetShipsDocument = gql`
-    query getShips {
-  ships {
-    abs
-    active
-    id
-  }
+export const ShipPartFragmentDoc = gql`
+    fragment ShipPart on Ship {
+  abs
+  active
+  id
+  course_deg
+  class
+  model
+  name
+  url
+  weight_kg
+  year_built
 }
     `;
+export const GetShipsDocument = gql`
+    query getShips($limit: Int, $offset: Int) {
+  ships(limit: $limit, offset: $offset) {
+    ...ShipPart
+  }
+}
+    ${ShipPartFragmentDoc}`;
 
 /**
  * __useGetShipsQuery__
@@ -1354,6 +1373,8 @@ export const GetShipsDocument = gql`
  * @example
  * const { data, loading, error } = useGetShipsQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
  *   },
  * });
  */
